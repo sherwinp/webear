@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>war1</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<display-name>fileServlet</display-name>
+		<servlet-name>fileServlet</servlet-name>
+		<servlet-class>weblogic.servlet.FileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fileServlet</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+	</servlet-mapping>	
+
+	<security-role>
+		<role-name>Administrator</role-name>
+	</security-role>
+	<security-role>
+		<role-name>Operator</role-name>
+	</security-role>
+	<security-role>
+		<role-name>Operators</role-name>
+	</security-role>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>public</web-resource-name>
+			<url-pattern>*.css</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>HEAD</http-method>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<display-name>secure constraint</display-name>
+		<web-resource-collection>
+			<web-resource-name>secured</web-resource-name>
+			<url-pattern>/</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>POST</http-method>
+			<http-method>PATCH</http-method>
+			<http-method>OPTION</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>TRACE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Administrator</role-name>
+			<role-name>Operators</role-name>
+			<role-name>Operator</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>myrealm</realm-name>
+		<form-login-config>
+			<form-login-page>/login.html</form-login-page>
+			<form-error-page>/login.html</form-error-page>
+		</form-login-config>
+	</login-config>
+	<session-config>
+		<session-timeout>30</session-timeout>
+		<cookie-config>
+			<path>/</path>
+			<http-only>true</http-only>
+		</cookie-config>
+	</session-config>
+
+</web-app>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>earmodule</artifactId>
+	<packaging>ear</packaging>
+	<name>earmodule</name>
+	<version>1.0.0</version>
+	<properties>
+		<!-- maven default properties -->
+		<encoding>UTF-8</encoding>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ejb.ejbVersion>3.2</ejb.ejbVersion>
+		<skipITs>true</skipITs>
+	</properties>
+
+
+	<dependencies>
+	<dependency>
+			<groupId>webear</groupId>
+			<artifactId>war1</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+	</dependency>
+
+		<dependency>
+			<groupId>webear</groupId>
+			<artifactId>war2</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions />
+			</plugin>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+						  <addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<libraryDirectoryMode>NONE</libraryDirectoryMode>
+					<skinnyWars>true</skinnyWars>
+					<modules>
+						<webModule>
+							<groupId>webear</groupId>
+							<artifactId>war1</artifactId>
+							<bundleFileName>webear-war1-1.0.0.war</bundleFileName>
+							<uri>webear-war1-1.0.0.war</uri>
+							<contextRoot>war1</contextRoot>
+					    </webModule>
+					    <webModule>
+							<groupId>webear</groupId>
+							<artifactId>war2</artifactId>
+							<bundleFileName>webear-war2-1.0.0.war</bundleFileName>
+							<uri>webear-war2-1.0.0.war</uri>
+							<contextRoot>war2</contextRoot>
+					    </webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<parent>
+		<groupId>webear</groupId>
+		<artifactId>webear</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+</project>
