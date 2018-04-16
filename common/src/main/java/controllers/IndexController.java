@@ -12,16 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 @Controller
 @ControllerAdvice
-public class IndexController extends HttpServlet{
+public class IndexController{
 
 	private static final long serialVersionUID = 8036731501362521420L;
 	@RequestMapping(value= {"/index.html","/"})
 	public ModelAndView index(HttpServletRequest request, HttpServletResponse response)
 	            throws IOException, ServletException {
-		 
-		 return new ModelAndView("index");
+		return new ModelAndView("index");
 	 }
 }

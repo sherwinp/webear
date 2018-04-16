@@ -11,6 +11,9 @@
 <body>
 <ul>
 	<li>hello world.</li>
+	<li><a href="/war2">goto war2</a></li>
+	<li><hr/></li>
+	<li><a href="/war2/signout.html">sign out</a></li>
 </ul>
 </body>
 </html>
