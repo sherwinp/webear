@@ -20,8 +20,7 @@ public class LoginController {
 
 	private static final long serialVersionUID = 4036731501362521420L;
 	@RequestMapping( value={"/login.html"})
-	 public ModelAndView login(HttpServletRequest request, HttpServletResponse response)
-	            throws IOException, ServletException {
+	 public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		 return new ModelAndView("login");
 	 }
 }
